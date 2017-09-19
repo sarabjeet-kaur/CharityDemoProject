@@ -1,6 +1,10 @@
 package com.example.charitydemoproject.backend;
 
-import okhttp3.ResponseBody;
+import com.example.charitydemoproject.bean.bean1.CharityInfo;
+import com.example.charitydemoproject.bean.bean2.ProductInfo;
+
+import java.util.HashMap;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
@@ -11,6 +15,11 @@ import retrofit2.http.POST;
  */
 
 public interface APiInterface {
-    @POST("get_column_info/")
-    Call<ResponseBody> charityResponse(@Header("Token") String token, @Body String organizer_campaign_id);
+    @POST("get_campaign_profile/")
+    Call<CharityInfo> charityResponse(@Header("Token") String token, @Body HashMap body);
+
+    @POST("campaign_products/")
+    Call<ProductInfo> topNeed(@Header("Token") String token, @Body HashMap body);
 }
+
+
