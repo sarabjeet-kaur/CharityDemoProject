@@ -12,7 +12,7 @@ import com.example.charitydemoproject.adapter.CustomAdapter;
 import static com.example.charitydemoproject.utility.AppConstants.list1;
 
 public class ListingActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView,recyclerViewOther;
     private CustomAdapter adapter;
     private ImageView cover_pic;
     String coverPic;
@@ -26,15 +26,18 @@ public class ListingActivity extends AppCompatActivity {
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerViewOther = (RecyclerView) findViewById(R.id.recyclerViewOther);
         coverPic = getIntent().getStringExtra("coverpic");
         cover_pic = (ImageView) findViewById(R.id.cover_pic);
         Glide.with(ListingActivity.this).load(coverPic).skipMemoryCache(true).into(cover_pic);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(ListingActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManagerOther = new LinearLayoutManager(ListingActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewOther.setLayoutManager(layoutManagerOther);
         adapter = new CustomAdapter(ListingActivity.this, list1);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        recyclerViewOther.setAdapter(adapter);
 
     }
 }
